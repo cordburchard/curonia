@@ -15,17 +15,55 @@
  */
 
 // ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define('DB_NAME', 'curonia_db');
+// /** The name of the database for WordPress */
+// define('DB_NAME', 'curonia_db');
 
-/** MySQL database username */
-define('DB_USER', 'root');
+// /** MySQL database username */
+// define('DB_USER', 'root');
 
-/** MySQL database password */
-define('DB_PASSWORD', 'root');
+// /** MySQL database password */
+// define('DB_PASSWORD', 'root');
 
-/** MySQL hostname */
-define('DB_HOST', 'localhost');
+// /** MySQL hostname */
+// define('DB_HOST', 'localhost');
+
+// print_r($_SERVER);
+
+if ($_SERVER['HTTP_HOST']=='localhost') {
+	define('WP_ENV', 'dev');
+} else {
+	define('WP_ENV', 'prod');
+}
+
+// echo WP_ENV;
+
+if (WP_ENV == 'dev') {
+	define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/curonia' . '/wordpress');
+	define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME'] . '/curonia');
+//	define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/curonia' . '/wp-content');
+//	define('WP_CONTENT_DIR', 'http://' . $_SERVER['SERVER_NAME'] . '/curonia' . '/wordpress' . '/wp-content');
+	define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/curonia' . '/wordpress' . '/wp-content');
+
+	define('DB_NAME', 'curonia_db');
+	define('DB_USER', 'root');
+	define('DB_PASSWORD', 'root');
+	define('DB_HOST', 'localhost');
+} else {
+// 	define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wordpress');
+// 	define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME']);
+// 	define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
+// 	define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
+
+	define('DB_NAME', 'curonia_db2');
+	define('DB_USER', 'root2');
+	define('DB_PASSWORD', 'root2');
+	define('DB_HOST', 'localhost2');
+}
+
+// echo DB_NAME;
+// echo DB_USER;
+// echo DB_PASSWORD;
+// echo DB_HOST;
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
